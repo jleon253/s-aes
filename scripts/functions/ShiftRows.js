@@ -1,17 +1,11 @@
 const shiftRowsBinario = (arrBinary =[]) => {
     let result = [];
-    const auxA = [];
-    const auxB = [];
-    const auxC = [];
-    const auxD = [];
-    //se separan en bloques de 4 elementos "bits" 
-    //para poder trabajar con ellos y intercambiarlo
-    auxA.push(...arrBinary.slice(0, 4));
-    auxB.push(...arrBinary.slice(4, 8));
-    auxC.push(...arrBinary.slice(8, 12));
-    auxD.push(...arrBinary.slice(12));
     //se intercambian los bloques
-    result = result.concat(auxA, auxD, auxC, auxB);
+    result = result.concat(
+        ...arrBinary.slice(0, 4), 
+        ...arrBinary.slice(12), 
+        ...arrBinary.slice(8, 12), 
+        ...arrBinary.slice(4, 8));
     return result;
 }
 
