@@ -39,3 +39,20 @@ const XORbyByte = (B1 = [], B2 = []) => {
 
   return arrXOR;
 }
+
+https://www.rapidtables.com/convert/number/decimal-to-binary.html
+const convertToBinary = (number) => {
+  let num = number;
+  let binary = (num % 2).toString();
+  for (; num > 1; ) {
+      num = parseInt(num / 2);
+      binary =  (num % 2) + (binary);
+  }
+  console.log(binary);
+  return binary;
+}
+
+https://www.rapidtables.org/convert/number/binary-to-decimal.html
+const binaryToDecimal = (binary = "0") => {
+  return parseInt(binary, 2);
+}
