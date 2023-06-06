@@ -1,4 +1,4 @@
-const shiftRowsBinario = (arrBytes = []) => {
+const shiftRows = (arrBytes = []) => {
   let result = [];
   //se intercambian los bloques
   result = result.concat(

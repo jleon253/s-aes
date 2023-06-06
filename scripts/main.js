@@ -14,4 +14,4 @@ const keyBinary = HexToBinary(AsciiToHex(key)).join('').split('');
 /**
  * Se invoca la función addKey
  */
-addKey(msgBinary, keyBinary)
+processNibbleSubstitution(addKey(msgBinary, keyBinary),sBox);
