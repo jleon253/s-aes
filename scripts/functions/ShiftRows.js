@@ -1,4 +1,4 @@
-function shiftRowsBinario(arrBinary =[]) {
+const shiftRowsBinario = (arrBinary =[]) => {
     let result = [];
     const auxA = [];
     const auxB = [];
@@ -15,7 +15,7 @@ function shiftRowsBinario(arrBinary =[]) {
     return result;
 }
 
-function shiftRowsDecimal(arrDecimal =[]) {
+const shiftRowsDecimal = (arrDecimal =[]) => {
     //los decimales del array es de 0 - 15
     let result = [];
     //se intercambian los bloques de 4 bit
