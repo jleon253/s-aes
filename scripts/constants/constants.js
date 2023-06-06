@@ -18,8 +18,19 @@ const sBox =
 ['1','7','8','F'],
 ['6','0','2','3'],
 ['C','4','D','E']];*/
-const iSBox = [
+const inverseSBox = [
     [10,5,9,10],
     [1,7,8,15],
     [6,0,2,3],
     [12,4,13,14]];
+
+//cajas de mixColumn
+const boxMix =[
+    [1,4],
+    [4,1]
+];
+
+const inverseBoxMix = [
+    [9,2],
+    [2,9]
+];
