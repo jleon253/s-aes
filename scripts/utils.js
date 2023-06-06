@@ -40,7 +40,7 @@ const XORbyByte = (B1 = [], B2 = []) => {
   return arrXOR;
 }
 
-https://www.rapidtables.com/convert/number/decimal-to-binary.html
+// https://www.rapidtables.com/convert/number/decimal-to-binary.html
 const convertToBinary = (number) => {
   let num = number;
   let binary = (num % 2).toString();
@@ -52,7 +52,15 @@ const convertToBinary = (number) => {
   return binary;
 }
 
-https://www.rapidtables.org/convert/number/binary-to-decimal.html
+// https://www.rapidtables.org/convert/number/binary-to-decimal.html
 const binaryToDecimal = (binary = "0") => {
   return parseInt(binary, 2);
+}
+
+const splitByGroups = (array = [], size = 4) => {
+  let groups = [];
+  for(let i = 0; i < array.length; i += size) {
+    groups.push(array.slice(i, i + size))
+  }
+  return groups;
 }
