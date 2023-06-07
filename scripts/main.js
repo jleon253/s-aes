@@ -10,19 +10,17 @@ const iv = 'XD';
  * se crean arrays que contienen todos los bits
  * msgBinary = [1,0,0,1,0,1,0,1,1,0]
  */
-console.log('msg ',msg )
-console.log('AsciiToHex(msg))',AsciiToHex(msg))
-console.log('HexToBinary(AsciiToHex(msg))',HexToBinary(AsciiToHex(msg)))
+console.log('Texto original:',msg );
 const msgBinary = HexToBinary(AsciiToHex(msg)).join("").split("");
-console.log('msgBinary', msgBinary);
+//console.log('msgBinary', msgBinary);
 const keyBinary = HexToBinary(AsciiToHex(key)).join("").split("");
 
 const ivBinary = HexToBinary(AsciiToHex(iv)).join("").split("");
 //console.log('ivBinary', ivBinary);
 const msgBinaryx16 = splitByGroups(msgBinary, 16, true);
 const msgBinaryx16Length = msgBinaryx16.length;
-console.log('msgBinaryx16', msgBinaryx16);
-console.log('msgBinaryx16..join()', msgBinaryx16.join());
+//console.log('msgBinaryx16', msgBinaryx16);
+//console.log('msgBinaryx16..join()', msgBinaryx16.join());
 
 
 const sAESEncryption = (msgBinary = [], subKeys = {}) => {
@@ -43,7 +41,7 @@ const sAESEncryption = (msgBinary = [], subKeys = {}) => {
 }
 
 const sAESDecryption = (cipherArray = [], subKeys = {}) => {
-  console.warn('------ sAESDecryption -------');
+  //console.warn('------ sAESDecryption -------');
   //const subKeys = keyExpansion(keyBinary);
   const array1 = addKey(cipherArray, subKeys[2]);
   // ---- Round 1 -------
@@ -80,7 +78,7 @@ const CBCEncrypted = () => {
       cipheredTexts.push(sAESEncryption(CBCEntry, subKeys))
     } 
   }
-  console.log('cipheredTexts', cipheredTexts);
+  //console.log('cipheredTexts', cipheredTexts);
 }
 CBCEncrypted();
 
@@ -93,7 +91,7 @@ const CBCDecrypted = () => {
   for(let i = 0; i < cipheredTexts.length; i++) {
     desCipheredTexts.push(XORbyByte(sAESDecryption(cipheredTexts[i], subKeys), auxD[i]))
   }
-  console.log('desCipheredTexts.join()', desCipheredTexts.join());
+  //console.log('desCipheredTexts.join()', desCipheredTexts.join());
   //console.log('desCipheredTexts', desCipheredTexts);
 }
 
@@ -101,6 +99,6 @@ console.warn('Desencriptar');
 CBCDecrypted();
 const processDesencryption = desCipheredTexts.map((item) => item.join(''));
 //console.log('processDesencryption',processDesencryption);
-const textOriginal = HexToAscii(splitByGroups(BinaryToHex(processDesencryption).join(''),2));
+const textFinal = HexToAscii(splitByGroups(BinaryToHex(processDesencryption).join(''),2));
 
-console.log('textOriginal',textOriginal);
+console.log('Texto desencriptado:',textFinal);
