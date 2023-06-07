@@ -21,7 +21,7 @@ const shiftRowsCustom = (arrBytes = []) => {
     ...arrBytes.slice(8, 12),
     ...arrBytes.slice(0, 4),
     );
-  console.log('shiftRows:');
+  // console.log('shiftRows:');
   //console.log(result);
   return result;
 };

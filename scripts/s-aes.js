@@ -1,3 +1,6 @@
+let cipherArrayBinaryFinal = [];
+let descipherArrayBinaryFinal = [];
+
 const inputValues = () => {
   const msg = "ok";
   const key = "§;";
@@ -41,18 +44,19 @@ const sAESDecryption = (cipherArray = [], subKeys = {}) => {
 const initS_AES = () => {
   const {key, keyBinary, msg, msgBinary} = inputValues();
   const subKeys = keyExpansion(keyBinary);
-  const cipherArrayBinary = sAESEncryption(msgBinary, subKeys)
-  const descipherArrayBinary = sAESDecryption(cipherArrayBinary, subKeys)
+  
+  cipherArrayBinaryFinal = sAESEncryption(msgBinary, subKeys)
+  descipherArrayBinaryFinal = sAESDecryption(cipherArrayBinaryFinal, subKeys)
 
   console.table({
     'msg': msg,
-    'msg binary': msgBinary,
+    'msg binary': msgBinary.join(''),
     'key': key,
-    'key binary': keyBinary,
-    'Cipher Text': BinaryToAscii(cipherArrayBinary),
-    'Cipher binary': cipherArrayBinary,
-    'Descipher Text': BinaryToAscii(descipherArrayBinary),
-    'Descipher binary': descipherArrayBinary
+    'key binary': keyBinary.join(''),
+    'Cipher Text': BinaryToAscii(cipherArrayBinaryFinal),
+    'Cipher binary': cipherArrayBinaryFinal.join(''),
+    'Descipher Text': BinaryToAscii(descipherArrayBinaryFinal),
+    'Descipher binary': descipherArrayBinaryFinal.join('')
   });
 }
 
