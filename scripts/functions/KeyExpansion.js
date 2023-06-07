@@ -40,7 +40,13 @@ const keyExpansion = (initialKey = []) => {
   const w3 = XORbyByte(w2, w1)
   const w4 = XORbyByte(w2, gFunction(w3, 2))
   const w5 = XORbyByte(w4, w3)
-  console.log({w0,w1,w2,w3,w4,w5});
+  const subKeys = {
+    0: w0.concat(w1),
+    1: w2.concat(w3),
+    2: w4.concat(w5),
+  }
+  console.log('subKeys', subKeys);
+  return subKeys
 }
 
 

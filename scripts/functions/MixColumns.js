@@ -51,16 +51,14 @@ const vectorMatrix = (
  *  */
 
 const mixColumn = (arrayBytes = [], boxMix = [], objectMixColumn = {}) => {
-    let result = [];
+  let result = [];
   const s00 = arrayBytes.slice(0, 4);
   const s10 = arrayBytes.slice(4, 8);
   const s01 = arrayBytes.slice(8, 12);
   const s11 = arrayBytes.slice(12);
-  let aux =vectorMatrix(s00, s10, boxMix, objectMixColumn).map(item => item.split('').join()) ;
-  result = result.concat(aux);
-  result = result.concat(vectorMatrix(s01, s11, boxMix, objectMixColumn));
+  result.push(vectorMatrix(s00, s10, boxMix, objectMixColumn).join('').split(''));
+  result.push(vectorMatrix(s01, s11, boxMix, objectMixColumn).join('').split(''));
   
-  console.log(result);
   console.log(result.flat());
-  return result;
+  return result.flat();
 };
