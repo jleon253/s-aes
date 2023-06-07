@@ -10,7 +10,7 @@ const HexToBinary = (hex = []) => {
 
 // https://binarytotext.net/binary-to-hexadecimal/
 const BinaryToHex = (bin = []) => {
-  return bin.map((val) => parseInt(val, 2).toString(16).toUpperCase())
+  return bin.map((val) => parseInt(val, 2).toString(16))
 }
 
 // https://www.rapidtables.com/convert/number/hex-to-ascii.html
@@ -21,6 +21,14 @@ const HexToAscii = (hex = []) => {
   return msgASCII;
 }
 
+const HexToAsciiB = (str = []) => {
+  return str
+    .map((val) => {
+      console.log('val', val);
+      return String.fromCharCode(parseInt(val, 16))
+    })
+    .join('');
+};
 
 // -------- XOR Functions ------------
 

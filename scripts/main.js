@@ -10,7 +10,9 @@ const iv = 'XD';
  * se crean arrays que contienen todos los bits
  * msgBinary = [1,0,0,1,0,1,0,1,1,0]
  */
-console.log('msg.length',msg.length)
+console.log('msg ',msg )
+console.log('AsciiToHex(msg))',AsciiToHex(msg))
+console.log('HexToBinary(AsciiToHex(msg))',HexToBinary(AsciiToHex(msg)))
 const msgBinary = HexToBinary(AsciiToHex(msg)).join("").split("");
 console.log('msgBinary', msgBinary);
 const keyBinary = HexToBinary(AsciiToHex(key)).join("").split("");
@@ -96,4 +98,11 @@ const CBCDecrypted = () => {
 }
 console.warn('Desencriptar');
 CBCDecrypted();
+let textOriginal = desCipheredTexts.map((item) => item.join(''));
+console.log('textOriginal',textOriginal);
+let textOriginal1 = splitByGroups(BinaryToHex(textOriginal).join(''),2);
+let textOriginal2 = HexToAsciiB(textOriginal1);
 
+//const msgBinary = HexToBinary(AsciiToHex(msg)).join("").split("");
+console.log('textOriginal1',textOriginal1);
+console.log('textOriginal2',textOriginal2);
