@@ -9,11 +9,21 @@ const HexToBinary = (hex = []) => {
 }
 
 // https://binarytotext.net/binary-to-hexadecimal/
+/**
+ * 
+ * @param bin: is an array string with n groups of 8 binary numbers: ['10011010', '11100010'] 
+ * @returns an array string with n groups of HEX numbers: ['A3','1F']
+ */
 const BinaryToHex = (bin = []) => {
   return bin.map((val) => parseInt(val, 2).toString(16))
 }
 
 // https://www.rapidtables.com/convert/number/hex-to-ascii.html
+/**
+ * 
+ * @param hex: is an array string with n groups of 2 HEX numbers: ['A3', '1F'] 
+ * @returns an string with a text in ASCII format
+ */
 const HexToAscii = (hex = []) => {
   const arrHEXNum = hex.map((val) => parseInt(val, 16))
   const msgASCII = String.fromCharCode(...arrHEXNum)
@@ -28,6 +38,15 @@ const HexToAsciiB = (str = []) => {
     })
     .join('');
 };
+
+/**
+ * 
+ * @param bin: is an array string of 16 elements between 1 and 0
+ * @returns a string with characters in ASCII format
+ */
+const BinaryToAscii = (bin = []) => {
+  return HexToAscii(BinaryToHex(splitArrayByGroups(bin, 8).map(arr => arr.join(''))))
+}
 
 // -------- XOR Functions ------------
 
@@ -75,7 +94,7 @@ const processPaddingBits = (arrayToPadding = [],numberBitsToPadding = 0) => {
    }
 };
 
-const splitByGroups = (array = [], size = 4, padding = false) => {
+const splitByGroupsWithPadding = (array = [], size = 4, padding = false) => {
   let groups = [];
   let lastIndex = 0;
   for(let i = 0; i < array.length; i += size) {
@@ -85,5 +104,14 @@ const splitByGroups = (array = [], size = 4, padding = false) => {
   if (padding && ((groups[lastIndex-1].length) != size)) {
     processPaddingBits(groups[lastIndex-1],(size-groups[lastIndex-1].length) );
   }
+  return groups;
+}
+
+const splitArrayByGroups = (array = [], size = 4) => {
+  let groups = [];
+  for(let i = 0; i < array.length; i += size) {
+    groups.push(array.slice(i, i + size));
+  }
+
   return groups;
 }

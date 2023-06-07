@@ -1,8 +1,7 @@
 /**
  * msg y clave son de 16 bits : 2 caracteres
  */
-//const msg = "Lo";
-let msg = "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi hendrerits";
+const msg = "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi hendrerits";
 const key = "§;";
 const iv = 'XD';
 
@@ -17,7 +16,7 @@ const keyBinary = HexToBinary(AsciiToHex(key)).join("").split("");
 
 const ivBinary = HexToBinary(AsciiToHex(iv)).join("").split("");
 //console.log('ivBinary', ivBinary);
-const msgBinaryx16 = splitByGroups(msgBinary, 16, true);
+const msgBinaryx16 = splitByGroupsWithPadding(msgBinary, 16, true);
 const msgBinaryx16Length = msgBinaryx16.length;
 //console.log('msgBinaryx16', msgBinaryx16);
 //console.log('msgBinaryx16..join()', msgBinaryx16.join());
@@ -99,6 +98,6 @@ console.warn('Desencriptar');
 CBCDecrypted();
 const processDesencryption = desCipheredTexts.map((item) => item.join(''));
 //console.log('processDesencryption',processDesencryption);
-const textFinal = HexToAscii(splitByGroups(BinaryToHex(processDesencryption).join(''),2));
+const textFinal = HexToAscii(splitByGroupsWithPadding(BinaryToHex(processDesencryption).join(''),2));
 
 console.log('Texto desencriptado:',textFinal);
