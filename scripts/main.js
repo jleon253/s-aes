@@ -96,13 +96,11 @@ const CBCDecrypted = () => {
   console.log('desCipheredTexts.join()', desCipheredTexts.join());
   //console.log('desCipheredTexts', desCipheredTexts);
 }
+
 console.warn('Desencriptar');
 CBCDecrypted();
-let textOriginal = desCipheredTexts.map((item) => item.join(''));
-console.log('textOriginal',textOriginal);
-let textOriginal1 = splitByGroups(BinaryToHex(textOriginal).join(''),2);
-let textOriginal2 = HexToAsciiB(textOriginal1);
+const processDesencryption = desCipheredTexts.map((item) => item.join(''));
+//console.log('processDesencryption',processDesencryption);
+const textOriginal = HexToAscii(splitByGroups(BinaryToHex(processDesencryption).join(''),2));
 
-//const msgBinary = HexToBinary(AsciiToHex(msg)).join("").split("");
-console.log('textOriginal1',textOriginal1);
-console.log('textOriginal2',textOriginal2);
+console.log('textOriginal',textOriginal);

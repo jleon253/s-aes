@@ -24,7 +24,6 @@ const HexToAscii = (hex = []) => {
 const HexToAsciiB = (str = []) => {
   return str
     .map((val) => {
-      console.log('val', val);
       return String.fromCharCode(parseInt(val, 16))
     })
     .join('');
@@ -71,8 +70,6 @@ const zeroPadding = (msg) => {
 }
 
 const processPaddingBits = (arrayToPadding = [],numberBitsToPadding = 0) => {
-   console.log(numberBitsToPadding);
-   console.table(arrayToPadding);
    for(let i = 0; i < numberBitsToPadding; i ++) {
     arrayToPadding.push("0");
    }
@@ -85,10 +82,6 @@ const splitByGroups = (array = [], size = 4, padding = false) => {
     groups.push(array.slice(i, i + size));
     lastIndex = lastIndex + 1;
   }
-  console.log('lastIndex',lastIndex);
-  console.log('groups[lastIndex-1]');
-  console.log(groups[lastIndex-1]);
-  console.log(groups[lastIndex-1].length);
   if (padding && ((groups[lastIndex-1].length) != size)) {
     processPaddingBits(groups[lastIndex-1],(size-groups[lastIndex-1].length) );
   }
