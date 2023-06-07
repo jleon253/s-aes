@@ -48,7 +48,6 @@ const convertToBinary = (number) => {
       num = parseInt(num / 2);
       binary =  (num % 2) + (binary);
   }
-  console.log(binary);
   return binary;
 }
 

@@ -34,3 +34,12 @@ const inverseBoxMix = [
     [9,2],
     [2,9]
 ];
+
+/**
+ * RCON(i) = x^(i+2)
+ * Los restantes 4 bits, se rellenan con ceros
+ */
+const RCON = {
+  1: ['1','0','0','0','0','0','0','0'], // x^3 : 1000
+  2: ['0','0','1','1','0','0','0','0'], // x^4 : 0011
+}
