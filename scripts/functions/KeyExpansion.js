@@ -5,7 +5,7 @@ const RotNib = (w_i = []) => {
   const N0 = w_i.slice(0, 4);
   const N1 = w_i.slice(4, 8);
   const result = [N1, N0]
-  console.log('RotNib:', result);
+  //console.log('RotNib:', result);
   return result;
 }
 
@@ -14,7 +14,7 @@ const RotNib = (w_i = []) => {
  */
 const SubNib = (nibs = []) => {
   const result = nibs.map(nib => nibbleSubstitution(nib, sBox)).flat()
-  console.log('SubNib:', result);
+  //console.log('SubNib:', result);
   return result;
 }
 
@@ -24,7 +24,7 @@ const SubNib = (nibs = []) => {
  */
 const gFunction = (w_i = [], indexRCON = 1) => {
   const firstXOR = XORbyByte(RCON[indexRCON], SubNib(RotNib(w_i)))
-  console.log({firstXOR});
+  //console.log({firstXOR});
   return firstXOR;
 }
 
@@ -32,7 +32,7 @@ const gFunction = (w_i = [], indexRCON = 1) => {
  * initialKey: array string de 16 posiciones con valores entre 0 y 1
  */
 const keyExpansion = (initialKey = []) => {
-  console.log('keyExpansion:');
+  //console.log('keyExpansion:');
 
   const w0 = initialKey.slice(0, 8);
   const w1 = initialKey.slice(8, 16);
@@ -45,7 +45,7 @@ const keyExpansion = (initialKey = []) => {
     1: w2.concat(w3),
     2: w4.concat(w5),
   }
-  console.log('subKeys', subKeys);
+  //console.log('subKeys', subKeys);
   return subKeys
 }
 

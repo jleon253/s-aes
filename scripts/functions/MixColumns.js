@@ -16,11 +16,11 @@ const objectMixColumn = {
 };
 
 const findMultication = (valueA = 0, valueB = 0) => {
-  console.log("valueA");
-  console.log(valueA);
-  console.log("valueB");
-  console.log(valueB);
-  console.log(objectMixColumn[valueA][valueB]);
+  //console.log("valueA");
+  //console.log(valueA);
+  //console.log("valueB");
+  //console.log(valueB);
+  //console.log(objectMixColumn[valueA][valueB]);
   return objectMixColumn[valueA][valueB];
 };
 
@@ -29,16 +29,16 @@ const vectorMatrix = (
   s10 = [],
   boxMix = []
 ) => {
-  console.log("vectormatrix-ini");
-  console.log(s00);
-  console.log(s10);
-  console.log(boxMix);
-  console.log(objectMixColumn);
+  //console.log("vectormatrix-ini");
+  //console.log(s00);
+  //console.log(s10);
+  //console.log(boxMix);
+  //console.log(objectMixColumn);
   let result = [];
-  console.log(s00.join(''));
+  //console.log(s00.join(''));
   let numberS00 = binaryToDecimal(s00.join(''));
   let numberS10 = binaryToDecimal(s10.join(''));
-  console.log("text");
+  //console.log("text");
   result[0] = convertToBinary(
     XORbyBit(
       findMultication(boxMix[0][0], (numberS00-1), objectMixColumn),
@@ -51,7 +51,7 @@ const vectorMatrix = (
       findMultication(boxMix[1][1], (numberS10-1), objectMixColumn)
     )
   ).padStart(4,'0');
-  console.table(result);
+  //console.table(result);
   return result;
 };
 
@@ -70,6 +70,6 @@ const mixColumn = (arrayBytes = [], boxMix = []) => {
   result.push(vectorMatrix(s00, s10, boxMix, objectMixColumn).join('').split(''));
   result.push(vectorMatrix(s01, s11, boxMix, objectMixColumn).join('').split(''));
   
-  console.log(result.flat());
+  //console.log(result.flat());
   return result.flat();
 };
