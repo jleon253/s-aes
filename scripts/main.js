@@ -1,23 +1,94 @@
 /**
  * msg y clave son de 16 bits : 2 caracteres
  */
-const msg = "×(";
-const key = "Jõ";
+const msg = "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi hendrerit";
+const key = "§;";
+const iv = 'XD'
 
 /**
  * se crean arrays que contienen todos los bits
  * msgBinary = [1,0,0,1,0,1,0,1,1,0]
  */
 const msgBinary = HexToBinary(AsciiToHex(msg)).join("").split("");
+console.log('msgBinary', msgBinary);
 const keyBinary = HexToBinary(AsciiToHex(key)).join("").split("");
 
-/* La primera ronda de encriptacion*/
-const roundA = (key) => {
-    const info = shiftRows(processNibbleSubstitution(key, sBox));
-    mixColumn(info, boxMix, objectMixColumn);
-};
+const ivBinary = HexToBinary(AsciiToHex(iv)).join("").split("");
+console.log('ivBinary', ivBinary);
+const msgBinaryx16 = splitByGroups(msgBinary, 16)
+const msgBinaryx16Length = msgBinaryx16.length;
+console.log('msgBinaryx16', msgBinaryx16);
 
-keyExpansion(keyBinary)
-const key0 = addKey(msgBinary, keyBinary);
-shiftRows(processNibbleSubstitution(key0, sBox));
-roundA(key0);
+
+const sAESEncryption = (msgBinary = [], subKeys = {}) => {
+  // const subKeys = keyExpansion(keyBinary); // no repetir
+  const array1 = addKey(msgBinary, subKeys[0]);
+  // ---- Round 1 -------
+  const array2 = processNibbleSubstitution(array1, sBox);
+  const array3 = shiftRows(array2);
+  const array4 = mixColumn(array3, boxMix);
+  const array5 = addKey(array4, subKeys[1]);
+  // ---- Round 2 -------
+  const array6 = processNibbleSubstitution(array5, sBox);
+  const array7 = shiftRows(array6);
+  const cipherArray = addKey(array7, subKeys[2]);
+
+  console.log('cipherArray', cipherArray);
+  return cipherArray;
+}
+
+const sAESDecryption = (cipherArray = []) => {
+  console.warn('------ sAESDecryption -------');
+  const subKeys = keyExpansion(keyBinary);
+  const array1 = addKey(cipherArray, subKeys[2]);
+  // ---- Round 1 -------
+  const array2 = shiftRows(array1);
+  const array3 = processNibbleSubstitution(array2, inverseSBox);
+  const array4 = addKey(array3, subKeys[1]);
+  const array5 = mixColumn(array4, inverseBoxMix);
+  // ---- Round 2 -------
+  const array6 = shiftRows(array5);
+  const array7 = processNibbleSubstitution(array6, inverseSBox);
+  const textPlainArray = addKey(array7, subKeys[0]);
+
+
+  console.log('textPlainArrayBinary', textPlainArray);
+  return textPlainArray;
+}
+
+// const cipherArray = sAESEncryption();
+// const textPlainArray = sAESDecryption(cipherArray);
+
+
+const subKeys = keyExpansion(keyBinary);
+const cipheredTexts = []
+const desCipheredTexts = []
+
+const CBCEncrypted = () => {
+  const CBCEntry = XORbyByte(msgBinaryx16[0], ivBinary);
+  console.log('CBCEntry', CBCEntry);
+  cipheredTexts.push(CBCEntry);
+
+  for(let i = 0; i < msgBinaryx16Length; i++) {
+    if(i > 0) {
+      const XORCipherPlain = XORbyByte(cipheredTexts[i - 1], msgBinaryx16[i])
+      cipheredTexts.push(sAESEncryption(XORCipherPlain, subKeys))
+    } else {
+      cipheredTexts.push(sAESEncryption(cipheredTexts[i], subKeys))
+    } 
+  }
+  console.log('cipheredTexts', cipheredTexts);
+}
+CBCEncrypted();
+
+const CBCDecrypted = () => {
+  const aux = ivBinary.concat(cipheredTexts);
+  console.log('aux', aux);
+  for(let i = 0; i < cipheredTexts.length; i++) {
+    desCipheredTexts.push(XORbyByte(sAESDecryption(cipheredTexts[i], subKeys), aux[i]))
+  }
+  console.log('desCipheredTexts', desCipheredTexts);
+}
+console.warn('Desencriptar');
+CBCDecrypted();
+
