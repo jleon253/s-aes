@@ -17,14 +17,7 @@ const roundA = (key) => {
     mixColumn(info, boxMix, objectMixColumn);
 };
 
-/**
- * Se invoca la función addKey
- */
 keyExpansion(keyBinary)
-
-/**
- * Se invoca la función addKey
- */
 const key0 = addKey(msgBinary, keyBinary);
 shiftRows(processNibbleSubstitution(key0, sBox));
 roundA(key0);
