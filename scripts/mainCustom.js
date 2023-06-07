@@ -1,8 +1,8 @@
 /**
  * msg y clave son de 16 bits : 2 caracteres
  */
-let msg = "Lo";
-//let msg = "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi hendrerits";
+//let msg = "Lo";
+let msg = "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi hendrerits";
 const key = "§;";
 const iv = 'XD';
 
