@@ -2,21 +2,22 @@
  * msg y clave son de 16 bits : 2 caracteres
  */
 //const msg = "Lo";
-const msg = "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi hendrerit";
+let msg = "Lorem ipsum dolor sit amet consectetur adipiscing elit Morbi hendrerits";
 const key = "§;";
-const iv = 'XD'
+const iv = 'XD';
 
 /**
  * se crean arrays que contienen todos los bits
  * msgBinary = [1,0,0,1,0,1,0,1,1,0]
  */
+console.log('msg.length',msg.length)
 const msgBinary = HexToBinary(AsciiToHex(msg)).join("").split("");
 console.log('msgBinary', msgBinary);
 const keyBinary = HexToBinary(AsciiToHex(key)).join("").split("");
 
 const ivBinary = HexToBinary(AsciiToHex(iv)).join("").split("");
 //console.log('ivBinary', ivBinary);
-const msgBinaryx16 = splitByGroups(msgBinary, 16)
+const msgBinaryx16 = splitByGroups(msgBinary, 16, true);
 const msgBinaryx16Length = msgBinaryx16.length;
 console.log('msgBinaryx16', msgBinaryx16);
 console.log('msgBinaryx16..join()', msgBinaryx16.join());
@@ -52,7 +53,7 @@ const sAESDecryption = (cipherArray = [], subKeys = {}) => {
   const array6 = shiftRows(array5);
   const array7 = processNibbleSubstitution(array6, inverseSBox);
   const textPlainArray = addKey(array7, subKeys[0]);
-  console.log('textPlainArrayBinary', textPlainArray);
+  //console.log('textPlainArrayBinary', textPlainArray);
   return textPlainArray;
 }
 
@@ -66,7 +67,7 @@ const desCipheredTexts = []
 
 const CBCEncrypted = () => {
   const CBCEntry = XORbyByte(msgBinaryx16[0], ivBinary);
-  console.log('CBCEntry', CBCEntry);
+  //console.log('CBCEntry', CBCEntry);
   //cipheredTexts.push(CBCEntry);
 
   for(let i = 0; i < msgBinaryx16Length; i++) {
@@ -83,15 +84,15 @@ CBCEncrypted();
 
 const CBCDecrypted = () => {
   let auxD =[];
-  console.log('cipheredTexts',cipheredTexts);
-  console.log('ivBinary',ivBinary);
+  //console.log('cipheredTexts',cipheredTexts);
+  //console.log('ivBinary',ivBinary);
   auxD = auxD.concat([ivBinary], cipheredTexts);
-  console.log('auxD', auxD);
+  //console.log('auxD', auxD);
   for(let i = 0; i < cipheredTexts.length; i++) {
     desCipheredTexts.push(XORbyByte(sAESDecryption(cipheredTexts[i], subKeys), auxD[i]))
   }
   console.log('desCipheredTexts.join()', desCipheredTexts.join());
-  console.log('desCipheredTexts', desCipheredTexts);
+  //console.log('desCipheredTexts', desCipheredTexts);
 }
 console.warn('Desencriptar');
 CBCDecrypted();

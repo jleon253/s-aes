@@ -56,10 +56,33 @@ const binaryToDecimal = (binary = "0") => {
   return parseInt(binary, 2);
 }
 
-const splitByGroups = (array = [], size = 4) => {
+const zeroPadding = (msg) => {
+  if (((msg.length)%16) == 0) {
+    msg=+ '0';
+  }
+}
+
+const processPaddingBits = (arrayToPadding = [],numberBitsToPadding = 0) => {
+   console.log(numberBitsToPadding);
+   console.table(arrayToPadding);
+   for(let i = 0; i < numberBitsToPadding; i ++) {
+    arrayToPadding.push("0");
+   }
+};
+
+const splitByGroups = (array = [], size = 4, padding = false) => {
   let groups = [];
+  let lastIndex = 0;
   for(let i = 0; i < array.length; i += size) {
-    groups.push(array.slice(i, i + size))
+    groups.push(array.slice(i, i + size));
+    lastIndex = lastIndex + 1;
+  }
+  console.log('lastIndex',lastIndex);
+  console.log('groups[lastIndex-1]');
+  console.log(groups[lastIndex-1]);
+  console.log(groups[lastIndex-1].length);
+  if (padding && ((groups[lastIndex-1].length) != size)) {
+    processPaddingBits(groups[lastIndex-1],(size-groups[lastIndex-1].length) );
   }
   return groups;
 }
