@@ -38,6 +38,6 @@ const processNibbleSubstitution = (arrayBytes = [], sBox = []) => {
     ...nibbleSubstitution(arrayBytes.slice(12), sBox)
   );
   //  console.log('processNibbleSubstitution-Fin:');
-  //  console.log(result);
+   console.log('NibbleSubstitution:', result);
   return result;
 };

@@ -6,8 +6,7 @@
  *  */ 
 const addKey = (state = [], key = []) => {
   const result = XORbyByte(state, key);
-  //console.log('addKey:');
-  //console.log(splitByGroupsWithPadding(result));
+  console.log('addKey:', result);
 
   return result;
 }

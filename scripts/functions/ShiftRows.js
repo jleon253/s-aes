@@ -7,8 +7,8 @@ const shiftRows = (arrBytes = []) => {
     ...arrBytes.slice(8, 12),
     ...arrBytes.slice(4, 8)
   );
-  //console.log('shiftRows:');
-  //console.log(result);
+  console.log('shiftRows:', result);
+
   return result;
 };
 

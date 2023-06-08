@@ -70,6 +70,6 @@ const mixColumn = (arrayBytes = [], boxMix = []) => {
   result.push(vectorMatrix(s00, s10, boxMix, objectMixColumn).join('').split(''));
   result.push(vectorMatrix(s01, s11, boxMix, objectMixColumn).join('').split(''));
   
-  //console.log(result.flat());
+  console.log('MixColumn:', result.flat());
   return result.flat();
 };

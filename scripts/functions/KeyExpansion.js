@@ -45,7 +45,7 @@ const keyExpansion = (initialKey = []) => {
     1: w2.concat(w3),
     2: w4.concat(w5),
   }
-  //console.log('subKeys', subKeys);
+  console.log('subKeys', subKeys);
   return subKeys
 }
 
